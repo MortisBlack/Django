@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+<!-- Usamos el method="post" porque Django auth espera un post -->
+<form method="POST">
+    <!--
+        La siguiente linea crea un token CSRF, que basicamente es una manera
+        de prevenir que un hacker "llame" a mi web desde otro sitio web
+        En otras palabras, genera un tocken que se pasa al API
+        cuando hago un llamado a "submit"
+        
+        Es importante usarlo en cualquier sitio donde tenga un form
+        o algo que necesite enviar informacion
+    -->
+    {% csrf_token %}
+
+    <!--
+        Django auth provee un form default que puede ser usado
+    -->
+    {{ form.as_p }}
+
+    <button type="submit">Login</button>
+</form>
+
+{% endblock %}
