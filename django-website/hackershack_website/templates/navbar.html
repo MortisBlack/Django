@@ -1,5 +1,6 @@
 <div>
-    {% url 'index' as index_url %}
+    <!-- Aqui se ve lo del prefijo -->
+    {% url 'public:index' as index_url %}
     <span>
         {% if request.path == index_url %}
         Home
@@ -8,7 +9,7 @@
         {% endif %}
     </span>
 
-    {% url 'about' as about_url %}
+    {% url 'public:about' as about_url %}
     <span>
         {% if request.path == about_url %}
         About
@@ -17,7 +18,7 @@
         {% endif %}
     </span>
 
-    {% url 'contact' as contact_url %}
+    {% url 'public:contact' as contact_url %}
     <span>
         {% if request.path == contact_url %}
         Contact
@@ -28,7 +29,7 @@
 
     <span style="float:right">
         {% if user.is_authenticated %}
-        {% url 'profile' as profile_url %}
+        {% url 'accounts:profile' as profile_url %}
         <span>Hi
             {% if request.path == profile_url %}
             {{ user.username }}
@@ -37,10 +38,10 @@
             {% endif %}
             !
         </span>
-        <span><a href="{% url 'logout' %}">Logout</a></span>
+        <span><a href="{% url 'accounts:logout' %}">Logout</a></span>
         {% else %}
         <sapn>
-            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'accounts:login' %}">Login</a>
         </sapn>
         {% endif %}
     </span>
