@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
 
 def index(request):
@@ -11,3 +12,7 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+
+class ProfileView(TemplateView):
+    template_name = 'accounts/profile.html'
